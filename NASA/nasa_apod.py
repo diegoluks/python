@@ -41,5 +41,6 @@ def index():
             download_picture(nasa_image_url)
     return render_template('index.html', nasa_image_url=nasa_image_url)
 
+# Adicione um ponto de entrada para o Gunicorn
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

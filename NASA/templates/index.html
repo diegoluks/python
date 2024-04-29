@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Imagem da NASA</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Imagem da NASA</h1>
+    <form method="POST" action="/">
+        <label for="data_desejada">Digite a data desejada no formato YYYY-MM-DD:</label>
+        <input type="text" id="data_desejada" name="data_desejada">
+        <button type="submit">Buscar Imagem</button>
+    </form>
+    {% if nasa_image_url %}
+    <img src="{{ nasa_image_url }}" alt="Imagem da NASA">
+    {% endif %}
+</body>
+</html>

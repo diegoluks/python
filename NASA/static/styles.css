@@ -1,31 +1,67 @@
 /* Estilos para o corpo da página */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
 }
 
 /* Estilos para o cabeçalho */
 header {
-    background-color: #333;
+    background-color: #343a40;
     color: #fff;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
+    border-bottom: 2px solid #212529;
 }
 
-/* Estilos para o texto */
-p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Estilos para a classe .container */
+/* Estilos para o contêiner principal */
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para a imagem */
+#nasa_image {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Estilos para a animação de carregamento da imagem */
+#nasa_image.loading {
+    opacity: 0.5;
+}
+
+/* Estilos para o título da imagem */
+.image-info h2 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+/* Estilos para a data da imagem */
+.image-info p {
+    font-size: 16px;
+    color: #6c757d;
+    margin-top: 10px;
+}
+
+/* Estilos para a explicação da imagem */
+.image-info p.explanation {
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* Estilos para a mensagem de erro */
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 10px;
 }

@@ -2,18 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imagem da NASA</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#search_button').click(function(e) {
+                e.preventDefault();
+                loadNasaImage();
+            });
+
+            function loadNasaImage() {
+                var search_date = $('#search_date').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: {'search_date': search_date},
+                    beforeSend: function() {
+                        $('#nasa_image').addClass('loading');
+                    },
+                    success: function(response) {
+                        $('#nasa_image').attr('src', response.url);
+                        $('#title').text(response.title);
+                        $('#date').text('Data: ' + response.date);
+                        $('#explanation').text(response.explanation);
+                    },
+                    complete: function() {
+                        $('#nasa_image').removeClass('loading');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Erro ao carregar a imagem da NASA:', error);
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
-    <h1>Imagem da NASA</h1>
-    <form method="POST" action="/">
-        <label for="data_desejada">Digite a data desejada no formato YYYY-MM-DD:</label>
-        <input type="text" id="data_desejada" name="data_desejada">
-        <button type="submit">Buscar Imagem</button>
-    </form>
-    {% if nasa_image_url %}
-    <img src="{{ nasa_image_url }}" alt="Imagem da NASA">
-    {% endif %}
+    <header>
+        <h1>Imagem da NASA</h1>
+    </header>
+    <div class="container">
+        <form action="/" method="post">
+            <label for="search_date">Digite a data desejada (AAAA-MM-DD):</label>
+            <input type="text" id="search_date" name="search_date" required>
+            <button id="search_button" type="submit">Buscar</button>
+        </form>
+        <div class="image-info">
+            <h2 id="title"></h2>
+            <p id="date"></p>
+            <img id="nasa_image" src="" alt="Imagem da NASA">
+            <p id="explanation"></p>
+        </div>
+    </div>
 </body>
 </html>

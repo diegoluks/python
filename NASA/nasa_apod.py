@@ -43,4 +43,4 @@ def index():
 
 # Adicione um ponto de entrada para o Gunicorn
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
